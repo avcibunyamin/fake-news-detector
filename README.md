@@ -1,16 +1,16 @@
-# Yapay Zeka Destekli Sahte Haber Tespit Sistemi
+# AI-Powered Fake News Detection System
 
-Haber metinlerini analiz ederek **gerçek** veya **sahte** olarak sınıflandıran web uygulaması.
+A web app that classifies news articles as **real** or **fake**.
 
-## Özellikler
+## Features
 
-- Metin giriş alanı veya `.txt` dosyası yükleme
-- Otomatik NLP ön işleme (temizleme, stopword kaldırma)
-- TF-IDF + Logistic Regression tabanlı sınıflandırma
-- Güven skoru ile sonuç gösterimi
-- Sade ve kullanıcı dostu Streamlit arayüzü
+- Paste text or upload a `.txt` file
+- Automatic NLP preprocessing (cleaning, stopword removal)
+- TF-IDF + Logistic Regression classifier
+- Result shown with a confidence score
+- Simple Streamlit interface
 
-## Kurulum
+## Installation
 
 ```bash
 git clone https://github.com/avcibunyamin/fake-news-detector.git
@@ -18,9 +18,9 @@ cd fake-news-detector
 pip install -r requirements.txt
 ```
 
-## Veri Seti
+## Dataset
 
-[Fake and Real News Dataset](https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset) Kaggle'dan indirilip `data/` klasörüne yerleştirilmelidir:
+Download the [Fake and Real News Dataset](https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset) from Kaggle and place it in `data/`:
 
 ```
 data/
@@ -28,46 +28,46 @@ data/
 └── True.csv
 ```
 
-## Kullanım
+## Usage
 
-**1. Modeli eğit:**
+**1. Train the model:**
 ```bash
 python train.py
 ```
 
-**2. Uygulamayı başlat:**
+**2. Start the app:**
 ```bash
 streamlit run app.py
 ```
 
-## Proje Yapısı
+## Project Structure
 
 ```
 fake-news-detector/
-├── data/           # Veri seti (Kaggle'dan indirilmeli)
-├── model/          # Eğitilmiş model dosyaları
-├── preprocess.py   # Metin ön işleme sınıfı
-├── train.py        # Model eğitim scripti
-├── predict.py      # Tahmin sınıfı
-├── app.py          # Streamlit arayüzü
+├── data/           # Dataset (download from Kaggle)
+├── model/          # Trained model files
+├── preprocess.py   # Text preprocessing
+├── train.py        # Model training script
+├── predict.py      # Prediction class
+├── app.py          # Streamlit interface
 ├── requirements.txt
-└── proposal.md     # Proje teklifi
+└── proposal.md     # Project proposal
 ```
 
-## Model Performansı
+## Model Performance
 
-| Metrik | Değer |
+| Metric | Value |
 |---|---|
-| Accuracy | ~%95 |
-| Precision | ~%95 |
-| Recall | ~%95 |
-| F1-Score | ~%95 |
+| Accuracy | ~95% |
+| Precision | ~95% |
+| Recall | ~95% |
+| F1-Score | ~95% |
 
-> Not: Değerler train.py çalıştırıldıktan sonra güncellenir.
+> Note: `train.py` prints the actual values after training.
 
-## Teknolojiler
+## Tech Stack
 
 - Python 3.10+
 - scikit-learn — TF-IDF, Logistic Regression
-- NLTK — metin ön işleme
-- Streamlit — web arayüzü
+- NLTK — text preprocessing
+- Streamlit — web interface

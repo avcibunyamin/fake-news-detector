@@ -1,81 +1,77 @@
-# Proje Teklifi: Yapay Zeka Destekli Sahte Haber Tespit Sistemi
+# Project Proposal: AI-Powered Fake News Detection System
 
-**Öğrenci:** Bünyamin AVCI
-**Tarih:** Nisan 2026
-
----
-
-## Hedef
-
-Bu projede, doğal dil işleme (NLP) ve makine öğrenimi yöntemleri kullanılarak haber
-metinlerini otomatik olarak **gerçek** veya **sahte** olarak sınıflandırabilen bir sistem
-geliştirilecektir. Son yıllarda sosyal medya ve internet üzerinden yayılan yanlış bilgilerin
-toplumsal etkileri göz önünde bulundurulduğunda, bu tür bir sistemin pratik değeri oldukça
-yüksektir. Sistemin çıktıları, kullanıcı dostu bir Streamlit web arayüzü aracılığıyla gerçek
-zamanlı olarak sunulacaktır.
+**Date:** April 2026
 
 ---
 
-## Veri Seti
+## Goal
 
-Projede Kaggle üzerinde yayımlanmış olan **Fake and Real News Dataset** kullanılacaktır.
-Bu veri seti iki ayrı CSV dosyasından oluşmaktadır:
-
-- `Fake.csv` — 23.000'den fazla sahte haber makalesi
-- `True.csv` — 21.000'den fazla gerçek haber makalesi
-
-Her kayıt; haber başlığı (`title`), içerik (`text`), konu (`subject`) ve yayın tarihi
-(`date`) alanlarını içermektedir. Etiketler ikili yapıdadır: `0 = Sahte`, `1 = Gerçek`.
-
-Veri kaynağı: https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset
+This project builds a system that uses natural language processing (NLP) and machine learning
+to automatically classify news articles as **real** or **fake**. Given the social impact of
+misinformation spreading through social media and the internet, such a system has clear
+practical value. Results are served in real time through a user-friendly Streamlit web
+interface.
 
 ---
 
-## Yöntem
+## Dataset
 
-### Ön İşleme
-Ham metinler aşağıdaki adımlardan geçirilecektir:
-- Küçük harfe çevirme
-- URL, sayı ve noktalama işaretlerinin kaldırılması
-- İngilizce stopword'lerin çıkarılması
+The project uses the **Fake and Real News Dataset** published on Kaggle.
+It consists of two CSV files:
 
-### Vektörizasyon
-Temizlenmiş metinler, **TF-IDF (Term Frequency–Inverse Document Frequency)** yöntemiyle
-sayısal vektörlere dönüştürülecektir. Unigram ve bigram kombinasyonu (ngram_range=(1,2))
-kullanılarak bağlamsal bilgi korunacaktır.
+- `Fake.csv` — more than 23,000 fake news articles
+- `True.csv` — more than 21,000 real news articles
+
+Each record has a title (`title`), body (`text`), subject (`subject`) and publication date
+(`date`). Labels are binary: `0 = Fake`, `1 = Real`.
+
+Source: https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset
+
+---
+
+## Method
+
+### Preprocessing
+Raw texts go through the following steps:
+- Lowercasing
+- Removing URLs, numbers and punctuation
+- Removing English stopwords
+
+### Vectorization
+Cleaned texts are converted into numeric vectors with **TF-IDF (Term Frequency–Inverse
+Document Frequency)**. A combination of unigrams and bigrams (`ngram_range=(1, 2)`) keeps
+some contextual information.
 
 ### Model
-Sınıflandırma için **Logistic Regression** algoritması tercih edilecektir. Bu tercih;
-yorumlanabilirlik, eğitim hızı ve TF-IDF ile yüksek uyumluluk gibi avantajlara
-dayanmaktadır.
+**Logistic Regression** is used for classification because it is interpretable, fast to
+train and works well with TF-IDF features.
 
-### Değerlendirme
-Model performansı aşağıdaki metrikler ile ölçülecektir:
+### Evaluation
+Model performance is measured with:
 - Accuracy, Precision, Recall, F1-Score
 
 ---
 
-## Beklenen Sonuç
+## Expected Outcome
 
-Literatürdeki benzer çalışmalar incelendiğinde TF-IDF + Logistic Regression kombinasyonunun
-bu veri setinde %95 civarında doğruluk sağladığı görülmektedir. Proje sonunda kullanıcıların
-herhangi bir haber metnini yapıştırarak saniyeler içinde güvenilirlik tahmini alabildiği,
-işlevsel ve sade bir web uygulaması teslim edilecektir.
+Similar studies report around 95% accuracy for TF-IDF + Logistic Regression on this dataset.
+The deliverable is a simple, working web app where users paste any news article and get a
+reliability prediction within seconds.
 
 ---
 
-## Teknoloji Yığını
+## Tech Stack
 
-| Katman | Araç / Kütüphane |
+| Layer | Tool / Library |
 |---|---|
-| Programlama dili | Python 3.10+ |
+| Language | Python 3.10+ |
 | NLP / ML | scikit-learn, NLTK |
-| Arayüz | Streamlit |
-| Versiyon kontrolü | Git / GitHub |
+| Interface | Streamlit |
+| Version control | Git / GitHub |
 
 ---
 
-## Referanslar
+## References
 
 - Ahmed, H. et al. (2018). *Detecting opinion spams and fake news using text classification.*
 - Kaggle – Fake and Real News Dataset: https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset

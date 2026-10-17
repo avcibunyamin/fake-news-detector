@@ -1,6 +1,6 @@
 """
-Tahmin modülü.
-Eğitilmiş modeli yükleyip yeni metinler üzerinde tahmin yapar.
+Prediction module.
+Loads the trained model and classifies new texts.
 """
 
 import os
@@ -11,24 +11,24 @@ from preprocess import TextPreprocessor
 
 class FakeNewsPredictor:
     """
-    Eğitilmiş modeli kullanarak haber metinlerini sınıflandıran sınıf.
+    Classifies news articles with the trained model.
 
-    model/ dizinindeki model.pkl ve vectorizer.pkl dosyalarını yükler.
+    Loads model.pkl and vectorizer.pkl from the model/ directory.
     """
 
-    LABELS = {0: "Sahte Haber (Fake News)", 1: "Gerçek Haber (Real News)"}
+    LABELS = {0: "Fake News", 1: "Real News"}
 
     def __init__(self, model_dir: str = "model"):
         """
         Args:
-            model_dir: Model dosyalarının bulunduğu dizin.
+            model_dir: Directory that contains the model files.
         """
         model_path = os.path.join(model_dir, "model.pkl")
         vectorizer_path = os.path.join(model_dir, "vectorizer.pkl")
 
         if not os.path.exists(model_path) or not os.path.exists(vectorizer_path):
             raise FileNotFoundError(
-                "Model dosyaları bulunamadı. Lütfen önce train.py ile modeli eğitin."
+                "Model files not found. Please train the model first with train.py."
             )
 
         with open(model_path, "rb") as f:
@@ -40,14 +40,15 @@ class FakeNewsPredictor:
 
     def predict(self, text: str) -> dict:
         """
-        Tek bir metin için tahmin üretir.
+        Predicts the label of a single text.
 
         Args:
-            text: Ham haber metni.
+            text: Raw news text.
 
         Returns:
-            label: Tahmin sonucu ("Sahte" / "Gerçek")
-            confidence: Modelin güven skoru (0-1 arası)
+            label: Predicted label ("Fake News" / "Real News")
+            is_fake: True if the text is classified as fake
+            confidence: Model confidence as a percentage (0-100)
         """
         cleaned = self.preprocessor.clean(text)
         vectorized = self.vectorizer.transform([cleaned])
