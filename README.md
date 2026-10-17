@@ -13,7 +13,7 @@ Haber metinlerini analiz ederek **gerçek** veya **sahte** olarak sınıflandır
 ## Kurulum
 
 ```bash
-git clone https://github.com/KULLANICI_ADI/fake-news-detector.git
+git clone https://github.com/avcibunyamin/fake-news-detector.git
 cd fake-news-detector
 pip install -r requirements.txt
 ```
